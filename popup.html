@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bookmark Folder</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      width: 400px;
+      padding: 15px;
+      background-color: #f4f7f6;
+      color: #333;
+    }
+    h2 {
+      margin-top: 0;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+      font-size: 1.5em;
+      color: #007bff;
+    }
+    #folder-controls, #bookmark-controls {
+      display: flex;
+      margin-bottom: 15px;
+      gap: 10px;
+    }
+    #folder-controls input, #search-input {
+      flex-grow: 1;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: all 0.3s;
+    }
+    #folder-controls input:focus, #search-input:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    }
+    .btn {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    #add-bookmark-controls { /* This ID is not used in JS directly, but left for potential future use */
+      margin-top: 15px;
+    }
+    #content-container {
+      margin-top: 15px;
+    }
+    .item-card {
+      padding: 12px;
+      background-color: #fff;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .item-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .folder-item {
+      cursor: pointer;
+    }
+    .bookmark-item {
+      cursor: grab;
+    }
+    .bookmark-item:active {
+      cursor: grabbing;
+    }
+    .item-content {
+      flex-grow: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+    }
+    .item-content a {
+      text-decoration: none;
+      color: #333;
+    }
+    .item-actions {
+      display: flex;
+      gap: 5px;
+    }
+    .action-btn {
+      background: none;
+      border: none;
+      color: #999;
+      cursor: pointer;
+      padding: 5px;
+      font-size: 1.2em;
+      transition: color 0.2s;
+    }
+    .action-btn:hover {
+      color: #333;
+    }
+    .delete-btn:hover {
+      color: #dc3545;
+    }
+    .edit-btn:hover {
+      color: #ffc107;
+    }
+    .back-btn {
+      margin-bottom: 15px;
+      padding: 8px 12px;
+      border-radius: 5px;
+      background-color: #6c757d;
+      color: white;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.3s;
+    }
+    .back-btn:hover {
+      background-color: #5a6268;
+    }
+  </style>
+</head>
+<body>
+  <h2>Bookmark Folders</h2>
+
+  <div id="folder-view">
+    <div id="folder-controls">
+      <input type="text" id="new-folder-name" placeholder="New folder name">
+      <button id="create-folder-btn" class="btn">Create</button>
+    </div>
+    <div id="folder-list"></div>
+  </div>
+
+  <div id="bookmark-view" style="display: none;">
+    <button id="back-to-folders-btn" class="back-btn">← Back to Folders</button>
+    <div id="current-folder-header"></div>
+    <div id="bookmark-controls">
+      <input type="text" id="search-input" placeholder="Search bookmarks...">
+      <button id="add-bookmark-btn" class="btn">Add Current Page</button>
+    </div>
+    <div id="bookmark-list"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
